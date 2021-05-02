@@ -33,8 +33,6 @@ import excel from 'exceljs'
     await doc.useServiceAccountAuth(credentials)
     await doc.loadInfo()
 
-    const sheetsQnt = doc.sheetCount
-
     const workbook = new excel.Workbook()
     const worksheet = workbook.addWorksheet(doc.title)
 
@@ -49,7 +47,7 @@ import excel from 'exceljs'
         { header: 'Observações', key: 'observations' },
     ]
     
-    for (let count = 0; count < sheetsQnt; count++) {
+    for (let count = 0; count < doc.sheetCount; count++) {
         const sheet = doc.sheetsByIndex[count]
         await sheet.setHeaderRow(['', '', 'name', 'publications', 'videos', 'hours', 'returns', 'studies', 'observations'])
         
